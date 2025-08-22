@@ -1,0 +1,23 @@
+[project]
+name = "fks-worker"
+version = "0.1.0"
+description = "FKS Background Worker (task scheduling & execution)"
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "Proprietary" }
+
+dependencies = [
+  "requests",
+  "pydantic>=2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["fks_worker*"]
+
+[project.optional-dependencies]
+queue = ["redis", "rq"]
+scheduler = ["apscheduler"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
