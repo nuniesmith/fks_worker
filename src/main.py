@@ -11,7 +11,11 @@ the Python standard library 'queue' module (which broke third-party libs expecti
 import os
 import sys
 
-from python.framework.services.template import start_template_service
+try:
+    from python.framework.services.template import start_template_service  # type: ignore
+except Exception:  # pragma: no cover
+    def start_template_service(*args, **kwargs):  # type: ignore
+        print("[fks_worker.main] framework.services.template missing - noop fallback")
 
 
 def main():
