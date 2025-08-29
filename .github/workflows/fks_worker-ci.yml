@@ -2,7 +2,7 @@ name: fks_worker CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
     paths:
       - 'src/**'
       - 'poetry.lock'
@@ -118,12 +118,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_USERNAME != '' && format('{0}/fks_worker', env.DOCKER_USERNAME) || 'local/fks_worker' }}
+          images: ${{ env.DOCKER_USERNAME != '' && format('{0}/fks', env.DOCKER_USERNAME) || 'local/fks' }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=tag
-            type=sha
-            type=raw,value=latest
+            type=ref,event=branch,prefix=worker-
+            type=ref,event=tag,prefix=worker-
+            type=sha,prefix=worker-
+            type=raw,value=worker-latest
 
       - name: Build image
         uses: docker/build-push-action@v5
@@ -133,6 +133,7 @@ jobs:
           push: ${{ env.DOCKER_USERNAME != '' && env.DOCKER_TOKEN != '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          load: true  # Load image to local Docker daemon for smoke test
           build-args: |
             SERVICE_RUNTIME=python
             SERVICE_TYPE=worker
@@ -140,8 +141,9 @@ jobs:
 
       - name: Run container smoke test
         run: |
-          # Get the first tag from the metadata output
+          # Use the locally built image for testing (no pull required)
           IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)
+          echo "Testing image: $IMAGE_TAG"
           docker run --rm --name fks_worker_test "$IMAGE_TAG" python -c "import sys; sys.path.append('/app/src'); import main; print('fks_worker module imported successfully')" || echo 'Basic container test completed'
 
       - name: Export image artifact (no push scenario)
