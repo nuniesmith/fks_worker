@@ -13,16 +13,17 @@ COPY --from=build /app/src/ /app/src/
 
 # Set service-specific environment variables
 ENV SERVICE_NAME=fks-worker \
-    SERVICE_TYPE=worker \
-    SERVICE_PORT=8006
+  SERVICE_TYPE=worker \
+  SERVICE_PORT=8006 \
+  WORKER_SERVICE_PORT=8006
 
 # Health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:${SERVICE_PORT}/health || exit 1
 
-EXPOSE ${SERVICE_PORT}
+EXPOSE 8006
 
 USER appuser
 
-# Use FastAPI/uvicorn as default entrypoint for worker service
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8006"]
+# Run the worker entrypoint directly (template or fallback)
+CMD ["python", "src/main.py"]

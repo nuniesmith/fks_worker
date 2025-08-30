@@ -21,7 +21,7 @@ except Exception:  # pragma: no cover
 def main():
     # Set the service name and port from environment variables or defaults
     service_name = os.getenv("WORKER_SERVICE_NAME", "worker")
-    port = int(os.getenv("WORKER_SERVICE_PORT", "8001"))
+    port = int(os.getenv("WORKER_SERVICE_PORT", os.getenv("SERVICE_PORT", "8006")))
 
     # Log the service startup
     print(f"Starting {service_name} service on port {port}")
