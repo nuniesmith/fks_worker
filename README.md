@@ -2,6 +2,8 @@
 
 Background task execution & scheduling (data refresh, training jobs, maintenance).
 
+This file is required for container builds performing editable installs (Poetry metadata generation). Do not remove without updating `pyproject.toml`.
+
 ## Quick Start
 
 ```bash

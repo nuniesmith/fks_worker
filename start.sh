@@ -125,14 +125,16 @@ follow_logs(){
 }
 
 main(){
+  LOCAL_MODE=false
   parse_args "$@"
+  trap cleanup_local EXIT
   check_tools
   build_or_pull
   bring_up
-  log INFO "Waiting ${WAIT_SECS}s for initial boot"; sleep "$WAIT_SECS"
-  health_checks
+  health_checks || { log ERROR "Startup failed"; return 1; }
   summary
   follow_logs
 }
 
 main "$@"
+      esac

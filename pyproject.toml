@@ -3,16 +3,16 @@ name = "fks_worker"
 version = "0.1.0"
 description = "FKS Background Worker (task scheduling & execution)"
 license = "Proprietary"
-readme = "README.md"
+# readme field removed to avoid container editable install failure when README not copied in early layer
 authors = ["FKS <nunie.smith01@gmail.com>"]
-packages = [ { include = "fks_worker", from = "src" } ]
+packages = [ { include = "fks_worker", from = "src" }, { include = "shared_python", from = "src" } ]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
 requests = "*"
 pydantic = "^2.0"
 celery = "^5.4.0"
-shared_python = { path = "../../shared/shared_python", develop = true }
+# shared_python path dependency removed; a lightweight local stub is bundled under src/shared_python for container builds
 
 [tool.poetry.extras]
 queue = ["redis", "rq"]
