@@ -12,7 +12,7 @@ from datetime import datetime
 from flask import Flask, jsonify
 import pytz
 
-# Set up logging
+# Set up logging without being shadowed by local helper module
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 

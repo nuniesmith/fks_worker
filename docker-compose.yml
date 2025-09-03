@@ -34,7 +34,7 @@ services:
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD-SHELL", "ps aux | grep -v grep | grep worker || exit 1"]
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
       interval: 60s
       timeout: 5s
       retries: 2
@@ -45,4 +45,5 @@ volumes:
 
 networks:
   fks_net:
+    name: fks_net
     external: true

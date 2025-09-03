@@ -5,7 +5,7 @@ description = "FKS Background Worker (task scheduling & execution)"
 license = "Proprietary"
 # readme field removed to avoid container editable install failure when README not copied in early layer
 authors = ["FKS <nunie.smith01@gmail.com>"]
-packages = [ { include = "fks_worker", from = "src" }, { include = "shared_python", from = "src" } ]
+packages = [ { include = "fks_worker", from = "src" } ]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
