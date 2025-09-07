@@ -1,6 +1,6 @@
 from typing import Any
 
-from Zservices.worker.executors.base import Task, TaskExecutor
+executors.base import Task, TaskExecutor
 
 
 class BacktestExecutor(TaskExecutor):

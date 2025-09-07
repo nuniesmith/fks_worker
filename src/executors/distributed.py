@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from framework.patterns.space_based import ProcessingUnit
-from Zservices.worker.tasks.base import BaseTask, TaskContext
+tasks.base import BaseTask, TaskContext
 
 
 class DistributedTaskExecutor(ProcessingUnit):

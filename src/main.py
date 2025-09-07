@@ -33,7 +33,7 @@ def main():
 
     if _USE_RUNTIME:
         # Ensure worker app registered then launch via registry
-        import shared_python.apps.worker  # noqa: F401
+        import python.apps.worker  # noqa: F401
         run_app("worker")
     else:
         # Legacy path

@@ -1,5 +1,5 @@
 import numpy as np  # type: ignore
-from ensemble import SimpleStackingEnsemble
+from fks_worker.ensemble import SimpleStackingEnsemble  # type: ignore
 
 class _DummyModel:
     def __init__(self, bias: float = 0.0):

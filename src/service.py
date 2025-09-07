@@ -1,13 +1,13 @@
 import logging
 from typing import Dict, Optional
 
-from framework.base import BaseService
+from shared.python.src.framework.base import BaseService
 from framework.infrastructure.messaging import TaskQueue
 from framework.patterns.space_based import SpaceBasedArchitecture
-from Zservices.worker.executors.base import TaskExecutor
-from Zservices.worker.monitoring import WorkerMonitor
-from Zservices.worker.task_queue import TaskQueueManager
-from Zservices.worker.scheduler import TaskScheduler
+from executors.base import TaskExecutor
+from monitoring import WorkerMonitor
+from task_queue import TaskQueueManager
+from scheduler import TaskScheduler
 
 logger = logging.getLogger(__name__)
 
