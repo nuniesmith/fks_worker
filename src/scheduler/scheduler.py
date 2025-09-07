@@ -249,7 +249,7 @@ class TaskScheduler(BaseComponent):
     ) -> None:
         """Queue a task for execution"""
         # Create task object - assuming Task class exists
-        from services.worker.executors.base import Task
+        from Zservices.worker.executors.base import Task
 
         task = Task(
             id=f"{task_name}_{task_id}_{datetime.utcnow().timestamp()}",

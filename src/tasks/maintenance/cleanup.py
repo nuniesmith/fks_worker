@@ -1,7 +1,7 @@
 from typing import Any, Dict
 
 from infrastructure.persistence.database import get_db
-from services.worker.tasks.base import BaseTask, TaskContext
+from Zservices.worker.tasks.base import BaseTask, TaskContext
 
 
 class DataCleanupTask(BaseTask):

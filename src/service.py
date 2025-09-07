@@ -4,10 +4,10 @@ from typing import Dict, Optional
 from framework.base import BaseService
 from framework.infrastructure.messaging import TaskQueue
 from framework.patterns.space_based import SpaceBasedArchitecture
-from services.worker.executors.base import TaskExecutor
-from services.worker.monitoring import WorkerMonitor
-from services.worker.task_queue import TaskQueueManager
-from services.worker.scheduler import TaskScheduler
+from Zservices.worker.executors.base import TaskExecutor
+from Zservices.worker.monitoring import WorkerMonitor
+from Zservices.worker.task_queue import TaskQueueManager
+from Zservices.worker.scheduler import TaskScheduler
 
 logger = logging.getLogger(__name__)
 

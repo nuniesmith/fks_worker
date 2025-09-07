@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict
 
-from services.worker.tasks.base import BaseTask, TaskContext
+from Zservices.worker.tasks.base import BaseTask, TaskContext
 
 
 class DailyReportTask(BaseTask):
