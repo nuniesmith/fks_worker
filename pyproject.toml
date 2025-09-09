@@ -4,33 +4,36 @@ version = "0.1.0"
 description = "FKS Background Worker (task scheduling & execution)"
 license = "Proprietary"
 readme = "README.md"  # README copied before editable install (see Dockerfile) so safe to include
-authors = ["FKS <nunie.smith01@gmail.com>"]
-packages = [ { include = "fks_worker", from = "src" } ]
+authors = ["nuniesmith"]
+packages = [
+	{ include = "framework", from = "src" },  # shared lightweight service framework
+	{ include = "fks_worker", from = "src" }  # empty marker package to satisfy Poetry name resolution
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
-requests = "*"
-pydantic = "^2.0"
-celery = "^5.4.0"
-flask = "^3.1.0"
-numpy = ">=1.26"  # used by ensemble logic
+requests = "2.32.5"
+pydantic = "^2.11.7"
+celery = "^5.5.3"
+flask = "^3.1.2"
+numpy = ">=2.3.2"  # used by ensemble logic
 gunicorn = "^23.0.0"
-pytz = "*"
+pytz = "2025.2"
 
 [tool.poetry.extras]
 queue = ["redis", "rq"]
 scheduler = ["apscheduler"]
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.0"
-pytest-asyncio = "^0.23"
-httpx = "^0.27"
-ruff = "^0.5.0"
-mypy = "^1.10.0"
-coverage = "^7.6.0"
+pytest = "^8.4.2"
+pytest-asyncio = "^1.1.0"
+httpx = "^0.28.1"
+ruff = "^0.12.12"
+mypy = "^1.17.1"
+coverage = "^7.10.6"
 
 [tool.poetry.scripts]
-fks_worker = "fks_worker.main:main"
+worker = "main:main"
 
 [build-system]
 requires = ["poetry-core"]
